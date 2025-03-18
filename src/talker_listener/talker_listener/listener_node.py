@@ -6,9 +6,13 @@ from std_msgs.msg import String
 class ListenerNode(Node):
     def __init__(self):
         super().__init__('listener_node')
+
+        self.declare_parameter('topic', value="listener_topic")
+        topic_name = self.get_parameter('topic').get_parameter_value().string_value
+
         self.subscription = self.create_subscription(
             String,
-            'topic',
+            topic_name,
             self.listener_callback, # This will be called everytime someone publishes to the topic
             10
         )
