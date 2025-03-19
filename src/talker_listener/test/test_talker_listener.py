@@ -8,11 +8,11 @@ import launch
 import launch_ros
 import launch_ros.actions
 import launch_testing.actions
-
+import pytest
 import rclpy
 import std_msgs.msg
 
-# Launch karna padega test node(or same node) 
+@pytest.mark.rostest
 def generate_test_description():
     file_path = os.path.dirname(__file__)
     talker_node = launch_ros.actions.Node(
